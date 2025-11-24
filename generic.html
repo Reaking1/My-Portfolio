@@ -23,7 +23,6 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#projects">Projects</a></li>
     <li class="active"><a href="generic.html">About</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
 </ul>
 
 				<ul class="icons">
@@ -44,7 +43,7 @@
     </header>
 
     <div class="image main">
-        <img src="images/me.png" alt="About Image" />
+        <img src="images/ItsMe.png" alt="About Image" />
     </div>
 
     <p>
@@ -79,25 +78,25 @@
 			<footer id="footer">
 				<section>
 					<h2>Contact Me</h2>
-					<form method="post" action="#">
-						<div class="fields">
-							<div class="field">
-								<label for="name">Name</label>
-								<input type="text" name="name" id="name" />
-							</div>
-							<div class="field">
-								<label for="email">Email</label>
-								<input type="text" name="email" id="email" />
-							</div>
-							<div class="field">
-								<label for="message">Message</label>
-								<textarea name="message" id="message" rows="3"></textarea>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Send Message" /></li>
-						</ul>
-					</form>
+							<form  id="contact-form" >
+    <div class="fields">
+        <div class="field">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" />
+        </div>
+        <div class="field">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" rows="3"></textarea>
+        </div>
+    </div>
+    <ul class="actions">
+        <li><input type="submit" value="Send Message" /></li>
+    </ul>
+</form>
 				</section>
 
 				<section class="split contact">
@@ -135,6 +134,32 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  (function() {
+    emailjs.init("82OLPn0vq_W31h5t7"); // Your public key
+  })();
+
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const serviceID = "service_rfitex1";
+    const templateID = "template_kzsvt9h";
+
+    emailjs.sendForm(serviceID, templateID, this)
+      .then(() => {
+        alert("Message sent successfully!");
+        form.reset();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Failed to send message. Try again.");
+      });
+  });
+</script>
 
 	</body>
 </html>
